@@ -5,8 +5,9 @@
 
 void setup()
 {
-  pinMode(sensorDigital, INPUT);
+  pinMode(sensorDigital, INPUT_PULLUP); 
   pinMode(Motor, OUTPUT);
+  pinMode(buzzer, OUTPUT);             
   Serial.begin(9600);
 }
 
@@ -17,28 +18,30 @@ void loop()
 
   Serial.print("Analog value : ");
   Serial.print(analog);
-  Serial.print("");
-  Serial.print("Digital value :");
+  Serial.print("   ");
+  Serial.print("Digital value : ");
   Serial.println(digital);
 
   if (analog >= 800)
   {
-    digitalWrite(Motor, LOW);
-    tone(buzzer, 3000);
+    digitalWrite(Motor, LOW);   
+    tone(buzzer, 3000);         
   }
   else if (analog >= 650)
   {
-    digitalWrite(Motor, HIGH);
-    tone(buzzer, 500);
+    digitalWrite(Motor, HIGH);  
+    tone(buzzer, 500);          
   }
   else if (analog >= 550)
   {
-    digitalWrite(Motor, HIGH);
-    tone(buzzer, 250);
+    digitalWrite(Motor, HIGH);  
+    tone(buzzer, 250);         
   }
   else
   {
-    digitalWrite(Motor, HIGH);
-    noTone(buzzer);
+    digitalWrite(Motor, HIGH); 
+    noTone(buzzer);             
   }
+
+  delay(500);
 }
